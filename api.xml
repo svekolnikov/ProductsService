@@ -4,36 +4,36 @@
         <name>ProductsService</name>
     </assembly>
     <members>
-        <member name="M:ProductsService.Controllers.BrandProductsController.GetAllAsync">
+        <member name="M:ProductsService.Controllers.ProductsController.GetAllAsync">
             <summary>
             Получить все товары
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ProductsService.Controllers.BrandProductsController.GetByIdAsync(System.Int32)">
+        <member name="M:ProductsService.Controllers.ProductsController.GetByIdAsync(System.Int32)">
             <summary>
             Получить товар по Id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:ProductsService.Controllers.BrandProductsController.CreateAsync(ProductsService.Requests.CreateProductRequest)">
+        <member name="M:ProductsService.Controllers.ProductsController.CreateAsync(ProductsService.Requests.CreateProductRequest)">
             <summary>
             Создать товар
             </summary>
             <param name="createProductRequest"></param>
             <returns></returns>
         </member>
-        <member name="M:ProductsService.Controllers.BrandProductsController.UpdateAsync(ProductsService.Requests.UpdateProductRequest)">
+        <member name="M:ProductsService.Controllers.ProductsController.UpdateAsync(ProductsService.Requests.UpdateProductRequest)">
             <summary>
             Обновить товар
             </summary>
             <param name="productRequest"></param>
             <returns></returns>
         </member>
-        <member name="M:ProductsService.Controllers.BrandProductsController.SoftDeleteBrandAsync(System.Int32)">
+        <member name="M:ProductsService.Controllers.ProductsController.SoftDeleteBrandAsync(System.Int32)">
             <summary>
-            Удалить товар
+            Soft Delete
             </summary>
             <param name="id"></param>
             <returns></returns>
