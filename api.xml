@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProductsService</name>
+    </assembly>
+    <members>
+        <member name="M:ProductsService.Controllers.ProductsController.GetAllAsync">
+            <summary>
+            Получить все товары
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProductsService.Controllers.ProductsController.GetByIdAsync(System.Int32)">
+            <summary>
+            Получить товар по Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProductsService.Controllers.ProductsController.CreateAsync(ProductsService.Requests.CreateProductRequest)">
+            <summary>
+            Создать товар
+            </summary>
+            <param name="createProductRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProductsService.Controllers.ProductsController.UpdateAsync(ProductsService.Requests.UpdateProductRequest)">
+            <summary>
+            Обновить товар
+            </summary>
+            <param name="productRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProductsService.Controllers.ProductsController.SoftDeleteBrandAsync(System.Int32)">
+            <summary>
+            Soft Delete
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ProductsService.DAL.Context.ApplicationDbContext.Products">
+            <summary>
+            Продукты
+            </summary>
+        </member>
+        <member name="P:ProductsService.Models.Base.Entity.Name">
+            <summary>
+            Название
+            </summary>
+        </member>
+        <member name="P:ProductsService.Models.Brand.AllowedSizes">
+            <summary>
+            Список допустимых размеров одежды
+            </summary>
+        </member>
+        <member name="T:ProductsService.Services.FailureInformation">
+            <summary>
+            Информация об ошибке
+            </summary>
+        </member>
+        <member name="P:ProductsService.Services.FailureInformation.Description">
+            <summary>
+            Описание ошибки
+            </summary>
+        </member>
+        <member name="T:ProductsService.Services.Interfaces.IFailureInformation">
+            <summary>
+            Информация об ошибке
+            </summary>
+        </member>
+        <member name="P:ProductsService.Services.Interfaces.IFailureInformation.Description">
+            <summary>
+            Описание ошибки
+            </summary>
+        </member>
+        <member name="T:ProductsService.Services.Interfaces.IServiceResult">
+            <summary>
+            Результат выполнения сервиса без данных
+            </summary>
+        </member>
+        <member name="T:ProductsService.Services.Interfaces.IServiceResult`1">
+            <summary>
+            Результат выполнения сервиса с данными
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ProductsService.Services.Interfaces.IServiceResult`1.Data">
+            <summary>
+            Возвращаемые данные из сервиса
+            </summary>
+        </member>
+        <member name="T:BrandsService.DTO.AllowedSizeDto">
+            <summary>
+            DTO размера
+            </summary>
+        </member>
+        <member name="P:BrandsService.DTO.BrandDto.Name">
+            <summary>
+            Название
+            </summary>
+        </member>
+        <member name="P:BrandsService.DTO.BrandDto.AllowedSizes">
+            <summary>
+            Список допустимых размеров одежды
+            </summary>
+        </member>
+    </members>
+</doc>
