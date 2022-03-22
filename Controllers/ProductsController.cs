@@ -5,32 +5,31 @@ using ProductsService.Services.Interfaces;
 
 namespace ProductsService.Controllers;
 
-[Route("api")]
+[Route("api/products")]
 [ApiController]
-public class BrandProductsController : ControllerBase
+public class ProductsController : ControllerBase
 {
     private readonly IProductsService _productsService;
-    private readonly ILogger<BrandProductsController> _logger;
+    private readonly ILogger<ProductsController> _logger;
 
-    public BrandProductsController(
+    public ProductsController(
         IProductsService productsService, 
-        ILogger<BrandProductsController> logger)
+        ILogger<ProductsController> logger)
     {
         _productsService = productsService;
         _logger = logger;
     }
 
     /// <summary>
-    /// Получить все товары бренда
+    /// Получить все товары
     /// </summary>
-    /// <param name="brandId"></param>
     /// <returns></returns>
-    [HttpGet("brand/{brandId}/products")]
-    public async Task<IActionResult> GetAll(int brandId)
+    [HttpGet("")]
+    public async Task<IActionResult> GetAllAsync()
     {
         try
         {
-            var serviceResult = await _productsService.GetAllProductsByBrandId(brandId);
+            var serviceResult = await _productsService.GetAllProductsAsync();
             if (serviceResult.IsSuccess)
                 return Ok(serviceResult);
 
@@ -48,7 +47,7 @@ public class BrandProductsController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("products/{id}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {
         try
@@ -71,7 +70,7 @@ public class BrandProductsController : ControllerBase
     /// </summary>
     /// <param name="createProductRequest"></param>
     /// <returns></returns>
-    [HttpPost("products")]
+    [HttpPost("")]
     public async Task<IActionResult> CreateAsync(CreateProductRequest createProductRequest)
     {
         try
@@ -89,11 +88,40 @@ public class BrandProductsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Обновить товар
+    /// </summary>
+    /// <param name="productRequest"></param>
+    /// <returns></returns>
+    [HttpPut("")]
     public async Task<IActionResult> UpdateAsync(UpdateProductRequest productRequest)
     {
         try
         {
             var serviceResult = await _productsService.UpdateAsync(productRequest);
+            if (serviceResult.IsSuccess)
+                return Ok(serviceResult);
+
+            return BadRequest(serviceResult);
+        }
+        catch (Exception e)
+        {
+            LogError(e);
+            return StatusCode(500);
+        }
+    }
+
+    /// <summary>
+    /// Soft Delete
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> SoftDeleteBrandAsync(int id)
+    {
+        try
+        {
+            var serviceResult = await _productsService.SoftDeleteBrandAsync(id);
             if (serviceResult.IsSuccess)
                 return Ok(serviceResult);
 

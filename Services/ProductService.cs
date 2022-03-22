@@ -21,7 +21,7 @@ namespace ProductsService.Services
             _brandsClient = brandsClient;
         }
 
-        public async Task<IServiceResult<IEnumerable<ProductDto>>> GetAllProductsByBrandId(int brandId)
+        public async Task<IServiceResult<IEnumerable<ProductDto>>> GetAllProductsAsync()
         {
             var productEntities = await _repository.GetAllAsync();
 
@@ -60,6 +60,50 @@ namespace ProductsService.Services
             var productEntity = _mapper.Map<Product>(createProductRequest);
 
             await _repository.AddAsync(productEntity);
+
+            return new ServiceResult
+                { IsSuccess = true, Failures = new List<IFailureInformation>() };
+        }
+
+        public async Task<IServiceResult> UpdateAsync(UpdateProductRequest productRequest)
+        {
+            var productEntity = await _repository.GetByIdAsync(productRequest.Id);
+            if (productEntity is null)
+            {
+                return new ServiceResult
+                {
+                    IsSuccess = false,
+                    Failures = new List<IFailureInformation>
+                    {
+                        new FailureInformation {Description = "Товар не найден"}
+                    }
+                };
+            }
+
+            _mapper.Map(productRequest, productEntity);
+
+            await _repository.UpdateAsync(productEntity);
+
+            return new ServiceResult
+                { IsSuccess = true, Failures = new List<IFailureInformation>() };
+        }
+
+        public async Task<IServiceResult> SoftDeleteBrandAsync(int id)
+        {
+            var productEntity = await _repository.GetByIdAsync(id);
+            if (productEntity is null)
+            {
+                return new ServiceResult
+                {
+                    IsSuccess = false,
+                    Failures = new List<IFailureInformation>
+                    {
+                        new FailureInformation {Description = "Товар не найден"}
+                    }
+                };
+            }
+
+            await _repository.SoftDeleteAsync(id);
 
             return new ServiceResult
                 { IsSuccess = true, Failures = new List<IFailureInformation>() };

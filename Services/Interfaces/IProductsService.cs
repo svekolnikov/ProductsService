@@ -5,7 +5,7 @@ namespace ProductsService.Services.Interfaces
 {
     public interface IProductsService
     {
-        Task<IServiceResult<IEnumerable<ProductDto>>> GetAllProductsByBrandId(int brandId);
+        Task<IServiceResult<IEnumerable<ProductDto>>> GetAllProductsAsync();
         Task<IServiceResult<ProductDto>> GetByIdAsync(int id);
         Task<IServiceResult> CreateAsync(CreateProductRequest createProductRequest);
         Task<IServiceResult> UpdateAsync(UpdateProductRequest productRequest);
